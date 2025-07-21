@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  background: linear-gradient(135deg, #f5f1eb 0%, #e8ddd4 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.header {
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  color: white;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.header::before {
+  content: "☕";
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+.header::after {
+  content: "🥐";
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+.header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.header p {
+  font-size: 1.1em;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.main-content {
+  padding: 40px;
+}
+
+.input-section {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 15px 20px;
+  border: 2px solid #e0d5cc;
+  border-radius: 50px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.todo-input:focus {
+  border-color: #8b4513;
+  box-shadow: 0 0 20px rgba(139, 69, 19, 0.2);
+}
+
+.add-btn {
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+}
+
+.add-btn:active {
+  transform: translateY(0);
+}
+
+.todo-list {
+  list-style: none;
+}
+
+.todo-item {
+  background: rgba(255, 255, 255, 0.9);
+  margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border-left: 4px solid #8b4513;
+  position: relative;
+}
+
+.todo-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.todo-item.completed {
+  opacity: 0.6;
+  border-left-color: #90ee90;
+  background: rgba(144, 238, 144, 0.1);
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+}
+
+.todo-checkbox-form {
+  margin: 0;
+}
+
+.todo-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #8b4513;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.todo-checkbox.checked {
+  background: #90ee90;
+  border-color: #90ee90;
+}
+
+.todo-text {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.todo-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  transform: scale(1.1);
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(139, 69, 19, 0.1);
+  border-radius: 20px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2em;
+  font-weight: 700;
+  color: #8b4513;
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 5px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #8b4513;
+  font-size: 1.1em;
+  opacity: 0.7;
+}
+
+.empty-state::before {
+  content: "☕✨";
+  display: block;
+  font-size: 3em;
+  margin-bottom: 15px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.todo-item {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.action-forms {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.action-forms form {
+  margin: 0;
+}

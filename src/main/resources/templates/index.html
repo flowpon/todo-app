@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>やることリスト (Todo List)</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>やることリスト</h1>
+        <p>私だけのやること管理</p>
+      </div>
+
+      <div class="main-content">
+        <!-- やること追加フォーム -->
+        <form th:action="@{/add}" method="post" class="input-section">
+          <input
+            type="text"
+            name="text"
+            class="todo-input"
+            placeholder="今日は何をしてみようか？"
+            required
+          />
+          <button type="submit" class="add-btn">追加する</button>
+        </form>
+
+        <!-- やることリスト -->
+        <ul class="todo-list">
+          <li
+            th:each="todo : ${todos}"
+            th:class="${todo.completed} ? 'todo-item completed' : 'todo-item'"
+          >
+            <div class="action-forms">
+              <!-- 完了トグルフォーム -->
+              <form
+                th:action="@{'/toggle/' + ${todo.id}}"
+                method="post"
+                class="todo-checkbox-form"
+              >
+                <button
+                  type="submit"
+                  th:class="${todo.completed} ? 'todo-checkbox checked' : 'todo-checkbox'"
+                >
+                  <span th:if="${todo.completed}">✓</span>
+                </button>
+              </form>
+            </div>
+
+            <span class="todo-text" th:text="${todo.text}">やること内容</span>
+
+            <!-- 削除フォーム -->
+            <form
+              th:action="@{'/delete/' + ${todo.id}}"
+              method="post"
+              style="margin: 0"
+            >
+              <button type="submit" class="delete-btn">削除</button>
+            </form>
+          </li>
+        </ul>
+
+        <!-- 空の状態メッセージ -->
+        <div th:if="${#lists.isEmpty(todos)}" class="empty-state">
+          まだやることがありませんね！<br />
+          最初のやることを追加してみてください 🌸
+        </div>
+
+        <!-- 統計 -->
+        <div class="stats">
+          <div class="stat-item">
+            <span class="stat-number" th:text="${totalTodos}">0</span>
+            <div class="stat-label">全体のやること</div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" th:text="${completedTodos}">0</span>
+            <div class="stat-label">完了したやること</div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" th:text="${pendingTodos}">0</span>
+            <div class="stat-label">残りのやること</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
